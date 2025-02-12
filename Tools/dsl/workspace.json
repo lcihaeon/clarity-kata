@@ -1,0 +1,295 @@
+{
+  "configuration" : {
+    "scope" : "SoftwareSystem"
+  },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedAgent" : "structurizr-ui",
+  "lastModifiedDate" : "2025-02-12T22:27:47Z",
+  "model" : {
+    "people" : [ {
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "Expert Software Architect",
+      "properties" : {
+        "structurizr.dsl.identifier" : "sa"
+      },
+      "relationships" : [ {
+        "description" : "Uses",
+        "destinationId" : "4",
+        "id" : "13",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Uses",
+        "destinationId" : "3",
+        "id" : "14",
+        "linkedRelationshipId" : "13",
+        "sourceId" : "1"
+      } ],
+      "tags" : "Element,Person"
+    }, {
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "Designated Software Architect",
+      "properties" : {
+        "structurizr.dsl.identifier" : "dsa"
+      },
+      "tags" : "Element,Person,Designated SA"
+    } ],
+    "softwareSystems" : [ {
+      "containers" : [ {
+        "description" : "Gateway for all API calls",
+        "documentation" : { },
+        "id" : "4",
+        "name" : "API Gateway",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.api_gateway"
+        },
+        "relationships" : [ {
+          "description" : "Calls",
+          "destinationId" : "5",
+          "id" : "15",
+          "sourceId" : "4",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Gateway"
+      }, {
+        "description" : "Grades the test",
+        "documentation" : { },
+        "id" : "5",
+        "name" : "Manual Grader",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.test1_grader"
+        },
+        "relationships" : [ {
+          "description" : "Writes to",
+          "destinationId" : "7",
+          "id" : "17",
+          "sourceId" : "5",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Stores ungraded aptitude test answers",
+        "documentation" : { },
+        "id" : "6",
+        "name" : "Ungraded Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.test1_db1"
+        },
+        "relationships" : [ {
+          "description" : "Reads from",
+          "destinationId" : "5",
+          "id" : "16",
+          "sourceId" : "6",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Database"
+      }, {
+        "description" : "Stores graded aptitude test answers",
+        "documentation" : { },
+        "id" : "7",
+        "name" : "Graded Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.test1_db2"
+        },
+        "tags" : "Element,Container,Database"
+      }, {
+        "description" : "Web application to assist in grading",
+        "documentation" : { },
+        "id" : "8",
+        "name" : "Grading AI Assistant Web Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.wa"
+        },
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Generates proposals of grading outcomes",
+        "documentation" : { },
+        "id" : "9",
+        "name" : "Large Language Model",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.llm"
+        },
+        "tags" : "Element,Container,LLM"
+      }, {
+        "description" : "Converts test answers into vectors",
+        "documentation" : { },
+        "id" : "10",
+        "name" : "Embedding Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.embedding"
+        },
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Orchestrates various acitivities that aggregate data necessary for LLM inputs",
+        "documentation" : { },
+        "id" : "11",
+        "name" : "Prompt Orchestrator",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.os"
+        },
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Stores vectors of test answers",
+        "documentation" : { },
+        "id" : "12",
+        "name" : "Vector Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "ss.vector_db"
+        },
+        "tags" : "Element,Container,Database"
+      } ],
+      "documentation" : { },
+      "id" : "3",
+      "location" : "Unspecified",
+      "name" : "Aptitude test grading system",
+      "properties" : {
+        "structurizr.dsl.identifier" : "ss"
+      },
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Name",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHNhID0gcGVyc29uICJFeHBlcnQgU29mdHdhcmUgQXJjaGl0ZWN0IgogICAgICAgIGRzYSA9IHBlcnNvbiAiRGVzaWduYXRlZCBTb2Z0d2FyZSBBcmNoaXRlY3QiIHsKICAgICAgICAgICAgdGFncyAiRGVzaWduYXRlZCBTQSIKICAgICAgICB9CiAgICAgICAgc3MgPSBzb2Z0d2FyZVN5c3RlbSAiQXB0aXR1ZGUgdGVzdCBncmFkaW5nIHN5c3RlbSIgewogICAgICAgICAgICBhcGlfZ2F0ZXdheSA9IGNvbnRhaW5lciAiQVBJIEdhdGV3YXkiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkdhdGV3YXkiCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiR2F0ZXdheSBmb3IgYWxsIEFQSSBjYWxscyIKICAgICAgICAgICAgfQogICAgICAgICAgICB0ZXN0MV9ncmFkZXIgPSBjb250YWluZXIgIk1hbnVhbCBHcmFkZXIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkNvbnRhaW5lciIKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJHcmFkZXMgdGhlIHRlc3QiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgdGVzdDFfZGIxID0gY29udGFpbmVyICJVbmdyYWRlZCBEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiU3RvcmVzIHVuZ3JhZGVkIGFwdGl0dWRlIHRlc3QgYW5zd2VycyIKICAgICAgICAgICAgfQogICAgICAgICAgICB0ZXN0MV9kYjIgPSBjb250YWluZXIgIkdyYWRlZCBEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiU3RvcmVzIGdyYWRlZCBhcHRpdHVkZSB0ZXN0IGFuc3dlcnMiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHdhID0gY29udGFpbmVyICJHcmFkaW5nIEFJIEFzc2lzdGFudCBXZWIgQXBwbGljYXRpb24iIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkNvbnRhaW5lciIKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJXZWIgYXBwbGljYXRpb24gdG8gYXNzaXN0IGluIGdyYWRpbmciCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGxsbSA9IGNvbnRhaW5lciAiTGFyZ2UgTGFuZ3VhZ2UgTW9kZWwiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkxMTSIKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJHZW5lcmF0ZXMgcHJvcG9zYWxzIG9mIGdyYWRpbmcgb3V0Y29tZXMiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVtYmVkZGluZyA9IGNvbnRhaW5lciAiRW1iZWRkaW5nIFNlcnZpY2UiIHsKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uICJDb252ZXJ0cyB0ZXN0IGFuc3dlcnMgaW50byB2ZWN0b3JzIgogICAgICAgICAgICB9CgogICAgICAgICAgICBvcyA9IGNvbnRhaW5lciAiUHJvbXB0IE9yY2hlc3RyYXRvciIgewogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gIk9yY2hlc3RyYXRlcyB2YXJpb3VzIGFjaXRpdml0aWVzIHRoYXQgYWdncmVnYXRlIGRhdGEgbmVjZXNzYXJ5IGZvciBMTE0gaW5wdXRzIgogICAgICAgICAgICB9CgogICAgICAgICAgICB2ZWN0b3JfZGIgPSBjb250YWluZXIgIlZlY3RvciBEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiAiU3RvcmVzIHZlY3RvcnMgb2YgdGVzdCBhbnN3ZXJzIgogICAgICAgICAgICB9CiAgICAgICAgfQoKICAgICAgICBzYSAtPiBzcy5hcGlfZ2F0ZXdheSAiVXNlcyIgCgogICAgICAgIHNzLmFwaV9nYXRld2F5IC0+IHNzLnRlc3QxX2dyYWRlciAiQ2FsbHMiIAoKICAgICAgICBzcy50ZXN0MV9kYjEgLT4gc3MudGVzdDFfZ3JhZGVyICJSZWFkcyBmcm9tIgoKICAgICAgICBzcy50ZXN0MV9ncmFkZXIgLT4gc3MudGVzdDFfZGIyICJXcml0ZXMgdG8iCiAgICAgICAgCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHN5c3RlbUNvbnRleHQgc3MgIkRpYWdyYW0xIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgc3MgIkRpYWdyYW0yIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJFbGVtZW50IiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUGVyc29uIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kIGdyZWVuCiAgICAgICAgICAgICAgICBzaGFwZSBwZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEZXNpZ25hdGVkIFNBIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kIGdvbGQKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgYmx1ZQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCBncmV5CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiR2F0ZXdheSIgewogICAgICAgICAgICAgICAgaGVpZ2h0IDEwMDAKICAgICAgICAgICAgICAgIHdpZHRoIDIwMAogICAgICAgICAgICAgICAgYmFja2dyb3VuZCBncmV5CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIGN5bGluZGVyCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kIGdyZXkKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KCiAgICBjb25maWd1cmF0aW9uIHsKICAgICAgICBzY29wZSBzb2Z0d2FyZXN5c3RlbQogICAgfQoKfQ=="
+  },
+  "views" : {
+    "configuration" : {
+      "branding" : { },
+      "lastSavedView" : "Diagram2",
+      "metadataSymbols" : "SquareBrackets",
+      "styles" : {
+        "elements" : [ {
+          "color" : "#ffffff",
+          "tag" : "Element"
+        }, {
+          "background" : "#008000",
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#ffd700",
+          "tag" : "Designated SA"
+        }, {
+          "background" : "#0000ff",
+          "tag" : "Software System"
+        }, {
+          "background" : "#808080",
+          "tag" : "Container"
+        }, {
+          "background" : "#808080",
+          "height" : 1000,
+          "tag" : "Gateway",
+          "width" : 200
+        }, {
+          "background" : "#808080",
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 5111,
+        "width" : 3070
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 199,
+        "y" : 2285
+      }, {
+        "id" : "4",
+        "x" : 1024,
+        "y" : 1985
+      }, {
+        "id" : "5",
+        "x" : 1649,
+        "y" : 2810
+      }, {
+        "id" : "6",
+        "x" : 899,
+        "y" : 3285
+      }, {
+        "id" : "7",
+        "x" : 2399,
+        "y" : 2810
+      }, {
+        "id" : "8",
+        "x" : 899,
+        "y" : 3885
+      }, {
+        "id" : "9",
+        "x" : 899,
+        "y" : 4485
+      }, {
+        "id" : "10",
+        "x" : 899,
+        "y" : 185
+      }, {
+        "id" : "11",
+        "x" : 899,
+        "y" : 785
+      }, {
+        "id" : "12",
+        "x" : 899,
+        "y" : 1385
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "Diagram2",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "13"
+      }, {
+        "id" : "15"
+      }, {
+        "id" : "16"
+      }, {
+        "id" : "17"
+      } ],
+      "softwareSystemId" : "3"
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "dimensions" : {
+        "height" : 800,
+        "width" : 1550
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 199,
+        "y" : 165
+      }, {
+        "id" : "3",
+        "x" : 899,
+        "y" : 215
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "Diagram1",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "14"
+      } ],
+      "softwareSystemId" : "3"
+    } ]
+  }
+}
