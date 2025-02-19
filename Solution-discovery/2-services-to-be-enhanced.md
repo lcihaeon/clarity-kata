@@ -1,69 +1,44 @@
 # Analysis of potential areas for improvement using Gen AI
 
-Summary:
+## Summary
 
-We assume that the main bottle neck in the current operation lies in the manual grading processes, i.e. aptitude
-manual grading and architecture manual grading. And these two areas appear to fit in the sweet spot for a RAG architecture, therefore, we will prioritize enhancing these two processes first.
+We assume that the main bottleneck in the current operation lies in the manual grading processes, i.e., aptitude manual grading and architecture manual grading. These two areas appear to fit in the sweet spot for a RAG architecture. Therefore, we will prioritize enhancing these two processes first.
 
-1. Aptitude Test Maintenance Service [*]
-    Modify aptitude tests.
+## Services to be Enhanced
 
-    Proposed solution summary: new data pipeline + automated suggestions
+1. **Aptitude Test Maintenance Service**
+    - **Objective:** Modify aptitude tests.
+    - **Proposed Solution:** New data pipeline + automated suggestions.
+    - **Details:** 
+        - Capture past accepted modifications to aptitude tests to train AI models for making suggestions to SAs.
+        - Consider whether Certifiable will benefit more from static rules or purely AI-driven models.
 
-    We assume that the past accepted modifications to aptitude tests were not persisted in the Aptitude test database. If that's the case, the first thing is to capture the modifications so that the data can be 
-    used to train AI models to make suggestions to SAs. The AI models to be selected should be chosen from
-    a range of models not restricted to just LLMs.
+2. **Case Study Maintenance Service**
+    - **Objective:** Modify case studies and grading criteria.
+    - **Proposed Solution:** New data pipeline + automated suggestions.
+    - **Details:** 
+        - Add functionality to store accepted SA modifications.
+        - Create a new table (case_study_changelog) in the Case Study database to persist the change log.
+        - Automated suggestions can come later and should be a lower priority.
 
-    Another factor to consider is whether Certifiable will benefit more from a set of static rules for modifications, or from purely AI-driven models.
+3. **Aptitude Test Analysis Service**
+    - **Objective:** Analyze aptitude test reports.
+    - **Proposed Solution:** New data pipeline + automated suggestions.
+    - **Details:** 
+        - Add functionality to store accepted SA modifications that can feed into the Aptitude Test Maintenance Service.
+        - Create a new table (aptitude_test_changelog) in the Aptitude Test database to persist the change log.
+        - Enhance this service in conjunction with the Aptitude Test Maintenance Service to provide a complete feature.
 
-2. Case Study Maintenance Service [*]
-    Modify case studies and grading criteria.
+4. **Aptitude Manual Grader**
+    - **Objective:** Automate grading of short answer questions.
+    - **Proposed Solution:** AI grading assistant powered by RAG.
+    - **Details:** 
+        - Use LLMs to evaluate short answer questions within the context window size.
+        - Pass ungraded candidate answers and similar graded answers as context to the LLM.
 
-    Proposed solution summary: new data pipeline + automated suggestions
-
-    This service should add the functionality to store accepted SA modifications.
-
-    To achieve this, adde another table (case_study_changelog) in the Case Study database, to persist the change log. 
-     - case study number (foreign key referencing the case study table) 
-     - change_type (one of modification, addition, removal)
-     - user
-     - status (one of proposed, accepted)
-     - modified_timestamp
-     - added_timestamp
-
-     Automated suggestions can come later. Should be a lower priority.
-
-3. Aptitude Test Analysis Service [*]
-    Analyzes aptitude test reports.
-
-    Proposed solution summary: new data pipeline + automated suggestions
-
-    This service should add the functionality to store accepted SA modifications, that can feed into
-    the Aptitude Test Maintenance Service.
-
-    To achieve this, adde another table (aptitude_test_changelog) in the Aptitude Test database, to persist the change log. 
-     - aptitude test number (foreign key referencing the aptitude test table)
-     - change_type (one of modification, addition, removal)
-     - user
-     - status (one of proposed, accepted)
-     - modified_timestamp
-     - added_timestamp
-
-     The enhancement of this service should go hand-in-hand with that of the Aptitude Test Maintenance Service
-     to provide a complete feature.
-
-4. Aptitude Manual Grader [*]
-
-    Proposed solution summary: Perfect candidate for RAG. AI grading assistant powered by RAG.
-
-    The short answer questions, we assume, will be within the context window size for most LLMs.
-    Ungraded candidate answers are stored in the Aptitude Test Ungraded Database. The ungraded answer
-    will be passed to the LLM as context. In addition, to provide additional context to the LLMs,
-    we need to search and pass along "similar" graded answers as request context for the LLM to process.
-
-5. Architecture Manual Grader [*]
-
-    Proposed solution summary: AI grading assistant powered by RAG.
-
-    We assume that the length of case studies are much longer than that of the aptitude tests. This may cause problems with the limit of context windows for LLMs. Which could
-    further translate into higher costs. More in-depth analysis to follow.
+5. **Architecture Manual Grader**
+    - **Objective:** Automate grading of architecture submissions.
+    - **Proposed Solution:** AI grading assistant powered by RAG.
+    - **Details:** 
+        - Address the challenge of longer case studies exceeding the context window size of LLMs.
+        - Implement a summarization step to manage prompt overflow by sending only relevant case study answers to the LLM.

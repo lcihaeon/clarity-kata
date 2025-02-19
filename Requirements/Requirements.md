@@ -1,17 +1,14 @@
 # Business Goals
 
-Business scaling. Serve more customers with the same staffing size.
-
-To support 21% growth over the next four years, and an expansion globally serving a customer base that's five to ten fold that of the current US market.
+Our primary business goal is to scale operations and serve more customers with the same staffing size. We aim to support a 21% growth over the next four years and expand globally, serving a customer base that is five to ten times larger than the current US market.
 
 ## Functional Requirements
 
-1. Accelarate manual processes
-    1. Reduce the amount of time expert SAs spend in grading short answer questions [RAG]
-    2. Reduce the amount of time expert SAs spend in grading architecture submissions [RAG]
-    3. Reduce the amount of time expert SAs spend in performing administrative tasks
-        1. analyzing reports and results to make modifications to cert tests [Build a data pipeline, feedback loop]
+1. Accelerate Manual Processes
+    - Reduce the amount of time expert SAs spend grading short answer questions using RAG.
+    - Reduce the amount of time expert SAs spend grading architecture submissions using RAG.
+    - Reduce the amount of time expert SAs spend performing administrative tasks, such as analyzing reports and results to make modifications to certification tests. This will be achieved by building a data pipeline and feedback loop.
 
-## Non-Funcional Requirements
+## Non-Functional Requirements
 
-Perform tasks accurately, cost-effective, and responsibly
+Tasks must be performed accurately, cost-effectively, and responsibly.

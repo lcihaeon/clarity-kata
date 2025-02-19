@@ -1,5 +1,4 @@
 workspace "Name" "Description" {
-
     !identifiers hierarchical
 
     model {
@@ -7,20 +6,15 @@ workspace "Name" "Description" {
         dsa = person "Designated Software Architect" {
             tags "Designated SA"
         }
-        ss = softwareSystem "Aptitude test grading system" {
-            api_gateway = container "API Gateway" {
-                tags "Gateway"
-                description "Gateway for all API calls"
-            }
-            test1_grader = container "Manual Grader" {
-                tags "Container"
-                description "Grades the test"
-            }
-            test1_db1 = container "Ungraded Database" {
+    
+        systemA = softwareSystem "Grading copilot system" {
+            description "Ingests data for grading"
+
+            test1_ungraded = container "Ungraded Database" {
                 tags "Database"
                 description "Stores ungraded aptitude test answers"
             }
-            test1_db2 = container "Graded Database" {
+            test1_graded = container "Graded Database" {
                 tags "Database"
                 description "Stores graded aptitude test answers"
             }
@@ -39,7 +33,7 @@ workspace "Name" "Description" {
                 description "Converts test answers into vectors"
             }
 
-            os = container "Prompt Orchestrator" {
+            ostr = container "Prompt Orchestrator" {
                 description "Orchestrates various acitivities that aggregate data necessary for LLM inputs"
             }
 
@@ -47,26 +41,64 @@ workspace "Name" "Description" {
                 tags "Database"
                 description "Stores vectors of test answers"
             }
+
+            evaluations = container "Evaluations" {
+                tags "Database"
+                description "Stores evaluations of AI assistant grading outcomes"
+            }
         }
 
-        sa -> ss.api_gateway "Uses" 
+        systemB = softwareSystem "System B" {
+            description "System B description"
+        }
+        // sa -> dataIngest.api_gateway "Uses" 
 
-        ss.api_gateway -> ss.test1_grader "Calls" 
+        // systemA.api_gateway -> systemA.test1_grader "Calls" 
 
-        ss.test1_db1 -> ss.test1_grader "Reads from"
+        // systemA.test1_db1 -> systemA.test1_grader "Reads from"
 
-        ss.test1_grader -> ss.test1_db2 "Writes to"
+        // systemA.test1_grader -> systemA.test1_db2 "Writes to"
+
+        // Data Ingestion
+        systemA.test1_graded -> systemA.embedding "Reads from"
+        systemA.embedding -> systemA.vector_db "Writes to, 80%"
+        systemA.embedding -> systemA.evaluations "Writes to, 20%"
+
+        // Grading Copilot
+        systemA.ostr -> systemA.test1_ungraded "Retrieve ungraded answers"
         
     }
 
     views {
-        systemContext ss "Diagram1" {
-            include *
+        // systemContext systemA "Diagram1" {
+        //     include *
+        //     autolayout lr
+        // }
+
+        // container systemA "Diagram2" {
+        //     include *
+        //     autolayout lr
+        // }
+
+        container systemA "Ingestion" {
+            description "Ingests data for grading and evaluation"
+            include systemA.test1_graded
+            include systemA.embedding
+            include systemA.evaluations
+            include systemA.vector_db
+            
             autolayout lr
         }
 
-        container ss "Diagram2" {
-            include *
+        container systemA "GradingCopilot" {
+            description "Generates proposals of grading outcomes"
+            include systemA.ostr
+            include systemA.llm
+            include systemA.wa
+            include systemA.test1_ungraded
+            include systemA.vector_db
+            include systemA.embedding
+
             autolayout lr
         }
 

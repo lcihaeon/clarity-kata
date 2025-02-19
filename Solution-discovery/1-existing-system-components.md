@@ -14,7 +14,7 @@
 
 ## Services
 
-There are three groups of existing services. For services that can benefit from Gen AI integration, I've marked them with an asterisk.
+There are three groups of existing services. For services that can benefit from Gen AI integration, we've marked them with an asterisk.
 
 ### Existing Administrative Architecture
 

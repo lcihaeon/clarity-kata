@@ -1,24 +1,21 @@
 # clarity-kata
 
-O'Reilly, Architectural Katas: AI-Enabled Architecture 
+O'Reilly, Architectural Katas: AI-Enabled Architecture
 
 ## Team
 
 Name: Clarity
-Members:
+Members: Grace Liao
 
-## Solution structure
+## Solution Overview
 
-### Problem Statement Distilled
+The team leveraged AI to enhance the certification system by focusing on two main areas: aptitude test grading and case study grading. By implementing a Retrieval-Augmented Generation (RAG) architecture, the team aimed to automate and improve the efficiency of these processes.
 
-* Requirements: TODO
-* Business Drivers: TODO
-* Context
+For aptitude tests, the AI grading copilot uses LLMs to evaluate short answer questions, providing context from similar graded answers to enhance accuracy.
 
-### Proposed Solution
+In the case of architecture manual grading, the team recognized the challenge of longer case studies exceeding the context window size of LLMs. To address this, we introduced a summarization step, where the shortened case study answers are sent to the LLM first. This method helps manage prompt overflow and ensures that the AI can provide accurate grading assistance.
 
-* ADRs
-* Component Diagram
+Overall, the integration of AI in the certification system aimed to streamline the grading process, reduce manual effort, and improve the accuracy and consistency of evaluations.
 
 ## Repository structure
 
